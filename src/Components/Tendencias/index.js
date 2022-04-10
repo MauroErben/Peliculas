@@ -1,6 +1,7 @@
+import TendenciasCarousel from "../Tendencias/Carousel";
 const Tendencias = () => {
     return(
-        <>Tendencias</>
+        <TendenciasCarousel />
     )
 }
 export default Tendencias;
