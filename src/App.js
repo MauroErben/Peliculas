@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './Components/Home';
-import Estrenos from './Components/Estrenos';
-import Tendencias from './Components/Tendencias';
+import Details from './Components/Details';
 import Layout from './Components/Layout';
+import Series from './Components/Series';
 
 function App() {
   return (
@@ -10,8 +10,8 @@ function App() {
       <Layout>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/estrenos' element={<Estrenos />} />
-          <Route path='/tendencias' element={<Tendencias />} />
+          <Route path='/series' element={<Series />} />
+          <Route path='/details/:id' element={<Details />} />
         </Routes>
       </Layout>
     </BrowserRouter>

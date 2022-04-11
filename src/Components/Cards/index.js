@@ -1,6 +1,6 @@
 import { Box, Heading, Text, Image, Button } from "@chakra-ui/react";
 
-const MovieCard = ({ imagen, titulo, descripcion }) => {
+const MovieCard = ({ imagen, titulo, descripcion, handleDrag, handleClick }) => {
     return (
         <Box
             display='flex'
@@ -12,18 +12,19 @@ const MovieCard = ({ imagen, titulo, descripcion }) => {
             boxShadow='lg'
             p='2'
         >
-            <Image src={imagen} />
+            <Image onDragStart={handleDrag} src={imagen} />
             <Box
                 p='2'
                 textAlign='center'
             >
-                <Heading fontSize='2xl'>{titulo}</Heading>
+                <Heading fontSize='14px'>{titulo}</Heading>
                 <Text mt='2'>{descripcion}</Text>
                 <Button
                     color='white'
                     bg='red.600'
                     _hover={{bg: 'red.700'}}
                     mt='2'
+                    onClick={handleClick}
                 >
                 Ver detalles</Button>
             </Box>
