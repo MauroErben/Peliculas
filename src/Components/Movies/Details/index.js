@@ -1,9 +1,9 @@
 import { Box, Flex, Heading, HStack, Image, Tag, TagLeftIcon, Text, VStack } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
-import { getMoviesDetails, getMoviesTrailer } from "../Services/movies";
+import { getMoviesDetails, getMoviesTrailer } from "../../Services/movies";
 import { useState, useEffect } from "react";
 import { AiFillLike } from 'react-icons/ai';
-import YoutubeEmbed from "../Youtube/YoutubeEmbed";
+import YoutubeEmbed from "../../Youtube/YoutubeEmbed";
 
 const Details = () => {
 
@@ -15,7 +15,6 @@ const Details = () => {
     const getDetails = async () => {
         try {
             const result = await getMoviesDetails(location.state.id);
-            //console.log(result);
             setMovieDetails(result);
         } catch (error) {
             console.log(error);
@@ -25,7 +24,6 @@ const Details = () => {
     const getTrailer = async () => {
         try {
             const { results } = await getMoviesTrailer(location.state.id);
-            console.log(results);
             setMovieTrailer(results);
         } catch (error) {
             console.log(error);
