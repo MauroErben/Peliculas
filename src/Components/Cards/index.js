@@ -16,9 +16,10 @@ const MovieCard = ({ imagen, titulo, descripcion, handleDrag, handleClick }) => 
             <Box
                 p='2'
                 textAlign='center'
+                width='280px'
             >
                 <Heading fontSize='14px'>{titulo}</Heading>
-                <Text mt='2'>{descripcion}</Text>
+                <Text mt='2' whiteSpace='nowrap' overflow='hidden' textOverflow='ellipsis'>{descripcion}</Text>
                 <Button
                     color='white'
                     bg='red.600'

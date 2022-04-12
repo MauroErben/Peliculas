@@ -1,23 +1,16 @@
-import { useState, useEffect } from "react";
-import { getUpcomingMovies } from "../Services/movies";
+import { useEffect } from "react";
 import { SimpleGrid } from "@chakra-ui/react";
 import MovieCard from "../Cards";
+import { getUpcoming, upcomingList } from '../../app/features/movies/upcomingSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const UpcomingMovies = ({ handleDetails }) => {
-
-    const [upcomingMovies, setUpcomingMovies] = useState([]);
-
-    const getUpcoming = async () => {
-        try {
-            const { results } = await getUpcomingMovies();
-            setUpcomingMovies(results);
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    
+    const dispatch = useDispatch();
+    const upcomingMovies = useSelector(upcomingList);
 
     useEffect(() => {
-        getUpcoming();
+        dispatch(getUpcoming());
     }, []);
 
     return (
@@ -27,7 +20,7 @@ const UpcomingMovies = ({ handleDetails }) => {
                     key={index}
                     imagen={`https://image.tmdb.org/t/p/original${items.backdrop_path}`}
                     titulo={items.original_title}
-                    descripcion={items.overview.slice(0, 100)}
+                    descripcion={items.overview}
                     handleClick={() => handleDetails(items)}
                 />
             ))}

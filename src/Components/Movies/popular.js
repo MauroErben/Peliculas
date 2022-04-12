@@ -1,22 +1,15 @@
-import { getPopularMovies } from "../Services/movies";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import AppCarousel from "../Carousel";
+import { useDispatch, useSelector } from 'react-redux';
+import { popularList, getPopular } from '../../app/features/movies/popularSlice';
 
 const PopularMovies = () => {
 
-    const [popularMovies, setPopularMovies] = useState([]);
-
-    const getData = async () => {
-        try {
-            const { results } = await getPopularMovies();
-            setPopularMovies(results);
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    const dispatch = useDispatch();
+    const popularMovies = useSelector(popularList);
 
     useEffect(() => {
-        getData();
+        dispatch(getPopular());
     }, [])
 
     return (

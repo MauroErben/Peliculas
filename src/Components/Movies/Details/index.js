@@ -1,38 +1,22 @@
 import { Box, Flex, Heading, HStack, Image, Tag, TagLeftIcon, Text, VStack } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
-import { getMoviesDetails, getMoviesTrailer } from "../../Services/movies";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { AiFillLike } from 'react-icons/ai';
 import YoutubeEmbed from "../../Youtube/YoutubeEmbed";
+import { useDispatch, useSelector } from 'react-redux';
+import { getDetails, detailsList } from '../../../app/features/movies/details/detailsSlice';
+import { getTrailer, trailerList } from '../../../app/features/movies/details/trailerSlice';
 
 const Details = () => {
 
-    const [movieDetails, setMovieDetails] = useState({});
-    const [movieTrailer, setMovieTrailer] = useState([]);
-
+    const dispatch = useDispatch();
+    const movieDetails = useSelector(detailsList);
+    const movieTrailer = useSelector(trailerList);
     const location = useLocation();
 
-    const getDetails = async () => {
-        try {
-            const result = await getMoviesDetails(location.state.id);
-            setMovieDetails(result);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    const getTrailer = async () => {
-        try {
-            const { results } = await getMoviesTrailer(location.state.id);
-            setMovieTrailer(results);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
     useEffect(() => {
-        getDetails();
-        getTrailer();
+        dispatch(getDetails(location.state.id));
+        dispatch(getTrailer(location.state.id));
     }, []);
 
     return (

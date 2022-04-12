@@ -26,7 +26,7 @@ export const getTopRatedMovies = () => {
 }
 
 export const getUpcomingMovies = () => {
-    return axios.get(`${BASE_URL}/movie/upcoming?api_key=${API_KEY}&lenguage=es-ES&page=1&region=US`)
+    return axios.get(`${BASE_URL}/movie/upcoming?api_key=${API_KEY}&lenguage=es&page=1&region=US`)
     .then(res => {
         if(res.status === 200){
             return res.data;
