@@ -8,8 +8,8 @@ const Home = () => {
 
     const navigate = useNavigate();
 
-    const showDetails = ( item ) => {
-        navigate(`/details/${item.id}`, {state: item})
+    const showDetails = (item) => {
+        navigate(`/details/${item.id}`, { state: item })
     }
 
     return (
@@ -19,7 +19,7 @@ const Home = () => {
             align='stretch'
         >
             <Box>
-               <PopularMovies />
+                <PopularMovies />
             </Box>
 
             <Box p='6'>

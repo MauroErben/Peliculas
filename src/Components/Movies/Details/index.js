@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, HStack, Image, Tag, TagLeftIcon, Text, VStack } from "@chakra-ui/react";
+import { Box, Flex, Heading, HStack, Image, Tag, TagLeftIcon, Text } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { AiFillLike } from 'react-icons/ai';
@@ -92,7 +92,8 @@ const Details = () => {
                         mt='6'
                     >
                         <Heading fontSize='20px'>Trailer</Heading>
-                        {movieTrailer.length > 0 && <YoutubeEmbed embedId={movieTrailer[0].key} />}
+                        {movieTrailer.length > 0 ? <YoutubeEmbed embedId={movieTrailer[0].key} />
+                        : <Text fontSize='sm'>Esta pelicula no contiene trailer por ahora.</Text>}
                     </Box>
                 </Box>
             </Flex>
