@@ -6,6 +6,7 @@ import YoutubeEmbed from "../../Youtube/YoutubeEmbed";
 import { useDispatch, useSelector } from 'react-redux';
 import { getDetails, addToFavorites, detailsList } from '../../../app/features/movies/details/detailsSlice';
 import { getTrailer, trailerList } from '../../../app/features/movies/details/trailerSlice';
+import { AiFillStar } from 'react-icons/ai';
 
 const Details = () => {
 
@@ -57,13 +58,14 @@ const Details = () => {
                             spacing={3}
                         >
                             <Button
+                                leftIcon={<AiFillStar/>}
                                 size='sm'
                                 bg='red.600'
                                 _hover={{ bg: ' red.700' }}
                                 color='white'
                                 onClick={() => dispatch(addToFavorites(location.state.id, false))}
                             >
-                                Agregar a favoritas
+                                Marcar como favorita
                             </Button>
                         </HStack>
                     }
