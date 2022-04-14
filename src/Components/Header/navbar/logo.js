@@ -5,7 +5,7 @@ export const Logo = () => {
         <Box>
             <MenuItems to="/">
                 <Text fontSize='lg' fontWeight='bold'>
-                    LOGO
+                    ME-Movies
                 </Text>
             </MenuItems>
         </Box>

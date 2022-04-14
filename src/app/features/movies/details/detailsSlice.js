@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { getMoviesDetails } from "../../../../Components/Services/movies";
+import { getMoviesDetails, addMovieToFavorite } from "../../../../Components/Services/movies";
+import { getAccountDetails } from "../../../../Components/Services/auth";
 
 const initialState = {
     details: {},
@@ -8,10 +9,24 @@ const initialState = {
 
 export const getDetails = createAsyncThunk(
     'movies/getMovieDetails', async (id) => {
-        try{
+        try {
             const result = await getMoviesDetails(id);
             return result;
-        }catch(error){
+        } catch (error) {
+            console.log(error);
+        }
+    }
+)
+
+export const addToFavorites = createAsyncThunk(
+    'movies/addToFavorites', async (location_id, isFavorite) => {
+        try {
+            const { id } = await getAccountDetails();
+            const response = await addMovieToFavorite(id,
+                { media_type: 'movie', media_id: location_id, favorite: isFavorite }
+            )
+            console.log(response);
+        } catch (error) {
             console.log(error);
         }
     }
@@ -22,13 +37,19 @@ export const detailsSlice = createSlice({
     initialState,
     extraReducers: (builder) => {
         builder
-        .addCase(getDetails.pending, (state) => {
-            state.status = 'pending';
-        })
-        .addCase(getDetails.fulfilled, (state, action) => {
-            state.details = action.payload;
-            state.status = 'success';
-        });
+            .addCase(getDetails.pending, (state) => {
+                state.status = 'pending';
+            })
+            .addCase(getDetails.fulfilled, (state, action) => {
+                state.details = action.payload;
+                state.status = 'success';
+            })
+            .addCase(addToFavorites.pending, (state) => {
+                state.status = 'pending';
+            })
+            .addCase(addToFavorites.fulfilled, (state) => {
+                state.status = 'success';
+            })
     }
 });
 

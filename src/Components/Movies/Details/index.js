@@ -1,13 +1,11 @@
 import { Box, Button, Flex, Heading, HStack, Image, Input, Tag, TagLeftIcon, Text } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { AiFillLike } from 'react-icons/ai';
 import YoutubeEmbed from "../../Youtube/YoutubeEmbed";
 import { useDispatch, useSelector } from 'react-redux';
-import { getDetails, detailsList } from '../../../app/features/movies/details/detailsSlice';
+import { getDetails, addToFavorites, detailsList } from '../../../app/features/movies/details/detailsSlice';
 import { getTrailer, trailerList } from '../../../app/features/movies/details/trailerSlice';
-import { addMovieToFavorite } from "../../Services/movies";
-import { getAccountDetails } from "../../Services/auth";
 
 const Details = () => {
 
@@ -16,24 +14,13 @@ const Details = () => {
     const movieTrailer = useSelector(trailerList);
     const location = useLocation();
 
-    const handleAddFavorite = async () => {
-        try {
-            const { id } = await getAccountDetails();
-            const response = await addMovieToFavorite(id,
-                { media_type: 'movie', media_id: location.state.id, favorite: true }
-            )
-            console.log(response);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
     const isAuth = () => sessionStorage.getItem('session_id');
 
     useEffect(() => {
         dispatch(getDetails(location.state.id));
         dispatch(getTrailer(location.state.id));
     }, []);
+
     return (
         <>
             <Flex flexDirection={{ base: 'column', lg: 'row' }}>
@@ -74,9 +61,10 @@ const Details = () => {
                                 bg='red.600'
                                 _hover={{ bg: ' red.700' }}
                                 color='white'
-                                onClick={handleAddFavorite}
+                                onClick={() => dispatch(addToFavorites(location.state.id, false))}
                             >
-                                Agregar a favoritas</Button>
+                                Agregar a favoritas
+                            </Button>
                         </HStack>
                     }
 
