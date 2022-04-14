@@ -3,6 +3,8 @@ import axios from "axios";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const API_KEY = process.env.REACT_APP_APIKEY;
 
+const getSessionId = () => sessionStorage.getItem('session_id') ? sessionStorage.getItem('session_id') : null;
+
 export const getAutheticationToken = () => {
     return axios.get(`${BASE_URL}/authentication/token/new?api_key=${API_KEY}`)
     .then(res => res.data)
@@ -21,8 +23,8 @@ export const authenticateUser = (request_token) => {
     .catch(error => console.log(error));
 }
 
-export const getAccountDetails = (session_id) => {
-    return axios.get(`${BASE_URL}/account?api_key=${API_KEY}&session_id=${session_id}`)
+export const getAccountDetails = () => {
+    return axios.get(`${BASE_URL}/account?api_key=${API_KEY}&session_id=${getSessionId()}`)
     .then(res => res.data)
     .catch(error => console.log(error));
 }

@@ -4,6 +4,7 @@ import Details from './Components/Movies/Details';
 import Layout from './Components/Layout';
 import Series from './Components/Series';
 import LoginForm from './Components/Auth/LoginForm';
+import Favorites from './Components/Movies/favorites';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path='/series' element={<Series />} />
           <Route path='/details/:id' element={<Details />} />
           <Route path='/auth/login' element={<LoginForm />} />
+          <Route path='/favorites' element={<Favorites />} />
         </Routes>
       </Layout>
     </BrowserRouter>

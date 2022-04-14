@@ -1,11 +1,13 @@
-import { Box, Flex, Heading, HStack, Image, Tag, TagLeftIcon, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, HStack, Image, Input, Tag, TagLeftIcon, Text } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { AiFillLike } from 'react-icons/ai';
 import YoutubeEmbed from "../../Youtube/YoutubeEmbed";
 import { useDispatch, useSelector } from 'react-redux';
 import { getDetails, detailsList } from '../../../app/features/movies/details/detailsSlice';
 import { getTrailer, trailerList } from '../../../app/features/movies/details/trailerSlice';
+import { addMovieToFavorite } from "../../Services/movies";
+import { getAccountDetails } from "../../Services/auth";
 
 const Details = () => {
 
@@ -19,9 +21,21 @@ const Details = () => {
         dispatch(getTrailer(location.state.id));
     }, []);
 
+    const handleAddFavorite = async () => {
+        try {
+            const { id } = await getAccountDetails();
+            const response = await addMovieToFavorite(id,
+                { media_type: 'movie', media_id: location.state.id, favorite: true }
+            )
+            console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <>
-            <Flex flexDirection={{base: 'column', lg: 'row'}}>
+            <Flex flexDirection={{ base: 'column', lg: 'row' }}>
                 <Box flex='1' bg='gray.800' p='12'>
                     <Image src={`https://image.tmdb.org/t/p/original${movieDetails.poster_path}`} />
                 </Box>
@@ -31,7 +45,7 @@ const Details = () => {
                     p='4'
                     color='white'
                 >
-                    <Heading textAlign={{base: 'center', lg: 'start'}}>
+                    <Heading textAlign={{ base: 'center', lg: 'start' }}>
                         {movieDetails.original_title}
                     </Heading>
 
@@ -88,12 +102,28 @@ const Details = () => {
                         <Tag colorScheme='green'>{movieDetails.status}</Tag>
                     </HStack>
 
+                    {sessionStorage.getItem('session_id') &&
+                        <HStack
+                            mt='6'
+                            spacing={3}
+                        >
+                            <Button
+                                size='sm'
+                                bg='red.600'
+                                _hover={{ bg: ' red.700' }}
+                                color='white'
+                                onClick={handleAddFavorite}
+                            >
+                                Agregar a tu lista de favoritas</Button>
+                        </HStack>
+                    }
+
                     <Box
                         mt='6'
                     >
                         <Heading fontSize='20px'>Trailer</Heading>
                         {movieTrailer.length > 0 ? <YoutubeEmbed embedId={movieTrailer[0].key} />
-                        : <Text fontSize='sm'>Esta pelicula no contiene trailer por ahora.</Text>}
+                            : <Text fontSize='sm'>Esta pelicula no contiene trailer por ahora.</Text>}
                     </Box>
                 </Box>
             </Flex>
