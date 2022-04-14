@@ -16,11 +16,6 @@ const Details = () => {
     const movieTrailer = useSelector(trailerList);
     const location = useLocation();
 
-    useEffect(() => {
-        dispatch(getDetails(location.state.id));
-        dispatch(getTrailer(location.state.id));
-    }, []);
-
     const handleAddFavorite = async () => {
         try {
             const { id } = await getAccountDetails();
@@ -33,6 +28,12 @@ const Details = () => {
         }
     }
 
+    const isAuth = () => sessionStorage.getItem('session_id');
+
+    useEffect(() => {
+        dispatch(getDetails(location.state.id));
+        dispatch(getTrailer(location.state.id));
+    }, []);
     return (
         <>
             <Flex flexDirection={{ base: 'column', lg: 'row' }}>
@@ -61,6 +62,23 @@ const Details = () => {
                             {Math.round(movieDetails.vote_count)}
                         </Tag>
                     </HStack>
+
+                    {isAuth() &&
+                        <HStack
+                            justifyContent='center'
+                            mt='6'
+                            spacing={3}
+                        >
+                            <Button
+                                size='sm'
+                                bg='red.600'
+                                _hover={{ bg: ' red.700' }}
+                                color='white'
+                                onClick={handleAddFavorite}
+                            >
+                                Agregar a favoritas</Button>
+                        </HStack>
+                    }
 
                     <Box
                         mt='6'
@@ -101,22 +119,6 @@ const Details = () => {
                         <Text fontSize='xs'>Status</Text>
                         <Tag colorScheme='green'>{movieDetails.status}</Tag>
                     </HStack>
-
-                    {sessionStorage.getItem('session_id') &&
-                        <HStack
-                            mt='6'
-                            spacing={3}
-                        >
-                            <Button
-                                size='sm'
-                                bg='red.600'
-                                _hover={{ bg: ' red.700' }}
-                                color='white'
-                                onClick={handleAddFavorite}
-                            >
-                                Agregar a tu lista de favoritas</Button>
-                        </HStack>
-                    }
 
                     <Box
                         mt='6'

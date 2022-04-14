@@ -23,7 +23,7 @@ export const accountSlice = createSlice({
     extraReducers: (builder) => {
         builder
         .addCase(getAccountInfo.pending, (state) => {
-            state.status = 'idle';
+            state.status = 'pending';
         })
         .addCase(getAccountInfo.fulfilled, (state, action) => {
             state.account = action.payload;
