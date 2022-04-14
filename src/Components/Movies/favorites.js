@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import MovieCard from "../Cards";
 import { Heading, HStack, SimpleGrid, Text } from "@chakra-ui/react";
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,19 +9,17 @@ const Favorites = () => {
 
     const dispatch = useDispatch();
     const favorites = useSelector(favoritesList);
-    const navigate = useNavigate();
+    const token = sessionStorage.getItem('session_id');
 
     useEffect(() => {
-        const isAuthenticated = sessionStorage.getItem('session_id')
-        if (!isAuthenticated) {
-            navigate('/');
-        } else {
+        if(token){
             dispatch(getFavorites());
         }
     }, []);
 
     return (
         <>
+            {!token && <Navigate replace to='/auth/login' />}
             <Heading mb='2' textAlign='center' fontSize='2xl' color='red.600'>Tus peliculas favoritas</Heading>
             <HStack
                 justifyContent='center'

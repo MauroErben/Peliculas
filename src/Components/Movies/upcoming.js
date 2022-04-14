@@ -14,7 +14,7 @@ const UpcomingMovies = ({ handleDetails }) => {
     }, []);
 
     return (
-        <SimpleGrid justifyItems='center' mt='6' columns={{ base: 1, md: 2, lg: 3, xl: 5 }} spacing={10}>
+        <SimpleGrid justifyItems='center' mt='6' columns={{ base: 1, md: 2, lg: 3, xl: 4 }} spacing={10}>
             {upcomingMovies.map((items, index) => (
                 <MovieCard
                     key={index}

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { showSuccessMessage } from "../Alerts";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const API_KEY = process.env.REACT_APP_APIKEY;
@@ -65,7 +66,12 @@ export const addMovieToFavorite = (account_id, values) => {
         headers: {
             'Content-Type': 'application/json;charset=UTF-8'
         }
-    }).then(res => res.data)
+    }).then(res => {
+        if(res.data.success){
+            showSuccessMessage(res.data.status_message);
+            return res.data;
+        }
+    })
     .catch(error => console.log(error));
 }
 

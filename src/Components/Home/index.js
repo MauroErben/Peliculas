@@ -13,25 +13,27 @@ const Home = () => {
     }
 
     return (
-        <VStack
-            divider={<StackDivider borderColor='gray.200' />}
-            spacing='4'
-            align='stretch'
-        >
-            <Box>
-                <PopularMovies />
-            </Box>
+        <>
+            <VStack
+                divider={<StackDivider borderColor='gray.200' />}
+                spacing='4'
+                align='stretch'
+            >
+                <Box>
+                    <PopularMovies />
+                </Box>
 
-            <Box p='6'>
-                <Heading mb='2' textAlign='center' fontSize='2xl' color='red.600'>Mas valoradas</Heading>
-                <TopRatedMovies handleDetails={showDetails} />
-            </Box>
+                <Box p='6'>
+                    <Heading mb='2' textAlign='center' fontSize='2xl' color='red.600'>Mas valoradas</Heading>
+                    <TopRatedMovies handleDetails={showDetails} />
+                </Box>
 
-            <Box p='6'>
-                <Heading mb='2' textAlign='center' fontSize='2xl' color='red.600'>Proximos estrenos</Heading>
-                <UpcomingMovies handleDetails={showDetails} />
-            </Box>
-        </VStack>
+                <Box p='6'>
+                    <Heading mb='2' textAlign='center' fontSize='2xl' color='red.600'>Proximos estrenos</Heading>
+                    <UpcomingMovies handleDetails={showDetails} />
+                </Box>
+            </VStack>
+        </>
     )
 }
 export default Home;
