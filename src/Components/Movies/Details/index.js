@@ -73,7 +73,7 @@ const Details = () => {
                     <Box
                         mt='6'
                     >
-                        <Heading fontSize='20px'>Descripcion</Heading>
+                        <Heading fontSize='20px'>Descripción</Heading>
                         <Text mt='4' fontSize='sm'>{movieDetails.overview}</Text>
                     </Box>
 
@@ -81,7 +81,7 @@ const Details = () => {
                         mt='6'
                         spacing={3}
                     >
-                        <Text fontSize='xs'>Generos</Text>
+                        <Text fontSize='xs'>Genero</Text>
                         {movieDetails?.genres?.map((gen) => (
                             <Tag colorScheme='green' key={gen.id}>{gen.name}</Tag>
                         ))}
@@ -106,7 +106,7 @@ const Details = () => {
                         mt='6'
                         spacing={3}
                     >
-                        <Text fontSize='xs'>Status</Text>
+                        <Text fontSize='xs'>Estado</Text>
                         <Tag colorScheme='green'>{movieDetails.status}</Tag>
                     </HStack>
 

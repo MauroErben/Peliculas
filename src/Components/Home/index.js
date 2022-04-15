@@ -24,12 +24,12 @@ const Home = () => {
                 </Box>
 
                 <Box p='6'>
-                    <Heading mb='2' textAlign='center' fontSize='2xl' color='red.600'>Mas valoradas</Heading>
+                    <Heading mb='2' textAlign='center' fontSize='2xl' color='red.600'>Más valoradas</Heading>
                     <TopRatedMovies handleDetails={showDetails} />
                 </Box>
 
                 <Box p='6'>
-                    <Heading mb='2' textAlign='center' fontSize='2xl' color='red.600'>Proximos estrenos</Heading>
+                    <Heading mb='2' textAlign='center' fontSize='2xl' color='red.600'>Próximos estrenos</Heading>
                     <UpcomingMovies handleDetails={showDetails} />
                 </Box>
             </VStack>

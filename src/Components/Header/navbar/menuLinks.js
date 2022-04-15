@@ -17,7 +17,7 @@ export const MenuLinks = ({ isOpen }) => {
                 direction={["column", "row", "row", "row"]}
                 pt={[4, 4, 0, 0]}
             >
-                <MenuItems to="/"><Text>Peliculas</Text></MenuItems>
+                <MenuItems to="/"><Text>Películas</Text></MenuItems>
                 <MenuItems to="/series"><Text>Series</Text></MenuItems>
                 {!token && <MenuItems to='/auth/login'><Button size='sm' bg='red.600' _hover={{bg: 'red.700'}}>Iniciar sesión</Button></MenuItems>}
                 {token && <MenuItems to="/favorites"><Text>Mis favoritas</Text></MenuItems>}
