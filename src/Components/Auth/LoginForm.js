@@ -37,7 +37,7 @@ const LoginForm = () => {
                 }}
             >
                 {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
-                    <Flex justifyContent='center' alignItems='center'>
+                    <Flex justifyContent='center' alignItems='center' height='100vh'>
                         <VStack
                             spacing={4}
                             padding='4'
