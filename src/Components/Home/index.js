@@ -24,7 +24,7 @@ const Home = () => {
                 </Box>
 
                 <Box p='6'>
-                    <Heading mb='2' textAlign='center' fontSize='2xl' color='red.600'>Más valoradas</Heading>
+                    <Heading mb='2' textAlign='center' fontSize='2xl' color='red.600'>Películas más valoradas</Heading>
                     <TopRatedMovies handleDetails={showDetails} />
                 </Box>
 
