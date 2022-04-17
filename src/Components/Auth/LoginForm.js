@@ -30,7 +30,7 @@ const LoginForm = () => {
                         const session = await createSessionToken(values);
                         const { session_id } = await authenticateUser({ 'request_token': session.request_token })
                         sessionStorage.setItem('session_id', session_id);
-                        navigate('/');
+                        window.location.reload();
                     } catch (error) {
                         console.log(error);
                     }

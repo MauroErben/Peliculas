@@ -20,7 +20,7 @@ export const MenuLinks = ({ isOpen }) => {
                 <MenuItems to="/"><Text>Inicio</Text></MenuItems>
                 <MenuItems to="/series"><Text>Series</Text></MenuItems>
                 {!token && <MenuItems to='/auth/login'><Button size='sm' bg='red.600' _hover={{bg: 'red.700'}}>Iniciar sesión</Button></MenuItems>}
-                {token && <MenuItems to="/favorites"><Text>Mis favoritas</Text></MenuItems>}
+                {token && <MenuItems to="/favorites"><Text>Favoritas</Text></MenuItems>}
             </Stack>
         </Box>
     )
