@@ -1,11 +1,10 @@
-import { Button, Flex, FormControl, FormErrorMessage, FormLabel, Heading, Input, VStack } from "@chakra-ui/react";
+import { Button, Flex, FormControl, FormErrorMessage, FormLabel, Heading, Input, VStack, Text } from "@chakra-ui/react";
 import { Formik } from "formik";
 import { getAutheticationToken, createSessionToken, authenticateUser } from "../Services/auth";
-import { useNavigate, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 const LoginForm = () => {
 
-    const navigate = useNavigate();
     const token = sessionStorage.getItem('session_id');
 
     return (
@@ -44,6 +43,7 @@ const LoginForm = () => {
                             boxShadow='lg'
                         >
                             <Heading size='lg'>Login</Heading>
+                            <Text fontSize='sm'>Debes tener una cuenta en TMDB para iniciar sesión.</Text>
                             <FormControl isInvalid={errors.username}>
                                 <FormLabel>Usuario</FormLabel>
                                 <Input
@@ -72,7 +72,7 @@ const LoginForm = () => {
                                 color='white'
                                 onClick={handleSubmit}
                             >
-                                Iniciar sesion
+                                Iniciar sesión
                             </Button>
                         </VStack>
                     </Flex>
