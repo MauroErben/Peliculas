@@ -9,8 +9,8 @@ const initialState = {
 export const getAccountInfo = createAsyncThunk(
     'account/getAccountInfo', async () => {
         try{
-            const response = await getAccountDetails();
-            return response;
+            const { avatar } = await getAccountDetails();
+            return avatar.tmdb;
         }catch(error){
             console.log(error);
         }
