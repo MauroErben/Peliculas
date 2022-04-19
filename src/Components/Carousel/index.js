@@ -1,13 +1,17 @@
 import { Carousel } from "react-responsive-carousel";
 import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
-import { Box } from "@chakra-ui/react";
+import { Box, useMediaQuery } from "@chakra-ui/react";
 
 const AppCarousel = ({ data }) => {
+
+    const [isMobile] = useMediaQuery('(max-width: 480px)');
+
     return (
         <Carousel
             showThumbs={false}
             showArrows
             autoPlay
+            renderIndicator={false}
         >
             {data.map((items, index) => (
                 <div key={index}>
@@ -19,11 +23,11 @@ const AppCarousel = ({ data }) => {
                         padding='2'
                         bg='blackAlpha.500'
                         color='white'
-                        fontSize={{base: '10px', md: '20px', lg: '30px'}}
+                        fontSize={{ base: '10px', md: '20px', lg: '30px' }}
                     >
                         {items.original_title}
                     </Box>
-                    <p className="legend">{items.overview}</p>
+                    {!isMobile && <p className="legend">{items.overview}</p>}
                 </div>
             ))}
         </Carousel>

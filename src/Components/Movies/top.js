@@ -34,7 +34,7 @@ const TopRatedMovies = ({ handleDetails }) => {
     return (
         <AliceCarousel
             autoWidth
-            disableButtonsControls
+            disableDotsControls
             mouseTracking
             items={getCardTopRated()}
         />

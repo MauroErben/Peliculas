@@ -1,8 +1,12 @@
 import { Box, Text } from "@chakra-ui/react"
-import { MenuItems } from "./menuItems"
+import { useNavigate } from "react-router-dom"
+
 export const Logo = () => {
+
+    const navigate = useNavigate();
+
     return (
-        <Box>
+        <Box cursor='pointer' onClick={() => navigate('/')}>
             <Text fontSize='lg' fontWeight='bold'>
                 ME-Movies
             </Text>
