@@ -15,7 +15,7 @@ const Favorites = () => {
         if(token){
             dispatch(getFavorites());
         }
-    }, []);
+    }, [dispatch]);
 
     return (
         <Box p='4'>

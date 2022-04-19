@@ -29,7 +29,7 @@ const TopRatedMovies = ({ handleDetails }) => {
 
     useEffect(() => {
         dispatch(getTopMovies());
-    }, []);
+    }, [dispatch]);
 
     return (
         <AliceCarousel

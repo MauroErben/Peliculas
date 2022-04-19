@@ -11,7 +11,7 @@ const UpcomingMovies = ({ handleDetails }) => {
 
     useEffect(() => {
         dispatch(getUpcoming());
-    }, []);
+    }, [dispatch]);
 
     return (
         <SimpleGrid justifyItems='center' mt='6' columns={{ base: 1, md: 2, lg: 3, xl: 4 }} spacing={10}>

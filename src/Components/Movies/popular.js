@@ -10,7 +10,7 @@ const PopularMovies = () => {
 
     useEffect(() => {
         dispatch(getPopular());
-    }, [])
+    }, [dispatch])
 
     return (
         <AppCarousel data={popularMovies} />

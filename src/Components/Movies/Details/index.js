@@ -20,7 +20,7 @@ const Details = () => {
     useEffect(() => {
         dispatch(getDetails(location.state.id));
         dispatch(getTrailer(location.state.id));
-    }, []);
+    }, [dispatch]);
 
     return (
         <>
