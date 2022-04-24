@@ -22,10 +22,9 @@ export const addToFavorites = createAsyncThunk(
     'movies/addToFavorites', async (location_id, isFavorite) => {
         try {
             const { id } = await getAccountDetails();
-            const response = await addMovieToFavorite(id,
+            await addMovieToFavorite(id,
                 { media_type: 'movie', media_id: location_id, favorite: isFavorite }
             )
-            console.log(response);
         } catch (error) {
             console.log(error);
         }

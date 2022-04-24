@@ -5,11 +5,6 @@ const APIKEY = process.env.REACT_APP_APIKEY;
 
 export const getSeriesPopular = () => {
     return axios.get(`${BASE_URL}/tv/popular?api_key=${APIKEY}&language=es&page=1`)
-    .then(res => {
-        if(res.status === 200){
-            return res.data;
-        }else{
-            alert('Ocurrio un error');
-        }
-    }).catch(err => console.log(err));
+    .then(res => res.data)
+    .catch(err => console.log(err));
 }

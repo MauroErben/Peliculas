@@ -21,9 +21,9 @@ const AppCarousel = ({ data }) => {
                         top='0'
                         width='100%'
                         padding='2'
-                        bg='blackAlpha.500'
+                        bg='blackAlpha.800'
                         color='white'
-                        fontSize={{ base: '10px', md: '20px', lg: '30px' }}
+                        fontSize={['sm', 'md', 'lg']}
                     >
                         {items.original_title}
                     </Box>

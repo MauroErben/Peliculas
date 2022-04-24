@@ -1,20 +1,10 @@
 import { Box, Button, Image, Stack, Text } from '@chakra-ui/react';
 import { MenuItems } from './menuItems';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAccountInfo, accountData } from '../../../app/features/account/accountSlice';
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export const MenuLinks = ({ isOpen }) => {
+export const MenuLinks = ({ isOpen, accountInfo, isAuth }) => {
 
-    const dispatch = useDispatch();
-    const account = useSelector(accountData);
-    const token = sessionStorage.getItem('session_id');
     const navigate = useNavigate();
-
-    useEffect(() => {
-        token && dispatch(getAccountInfo());
-    }, [dispatch]);
 
     return (
         <Box
@@ -29,11 +19,11 @@ export const MenuLinks = ({ isOpen }) => {
                 pt={[4, 4, 0, 0]}
             >
                 <MenuItems to="/"><Text>Inicio</Text></MenuItems>
-                <MenuItems to="/series"><Text>Series</Text></MenuItems>
-                {token ?
+                <MenuItems to="/estrenos"><Text>Estrenos</Text></MenuItems>
+                {isAuth ?
                     <>
                         <MenuItems to="/favorites"><Text>Favoritas</Text></MenuItems>
-                        <Image borderRadius='full' src={`https://image.tmdb.org/t/p/original${account?.avatar_path}`} boxSize='32px' />
+                        <Image borderRadius='full' src={`https://image.tmdb.org/t/p/original${accountInfo?.avatar_path}`} boxSize='36px' />
                     </>
                     : <Button onClick={() => navigate('/auth/login')} size='sm' bg='red.600' _hover={{ bg: 'red.700' }}>Iniciar sesión</Button>}
             </Stack>

@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import MovieCard from "../Cards";
-import { Box, Heading, HStack, SimpleGrid, Text } from "@chakra-ui/react";
+import { Box, VStack, SimpleGrid, StackDivider, Text } from "@chakra-ui/react";
 import { useDispatch, useSelector } from 'react-redux';
 import { getFavorites, favoritesList } from '../../app/features/movies/favoritesSlice';
+import Title from "../Titles";
 
 const Favorites = () => {
 
@@ -12,29 +13,31 @@ const Favorites = () => {
     const token = sessionStorage.getItem('session_id');
 
     useEffect(() => {
-        if(token){
+        if (token) {
             dispatch(getFavorites());
         }
     }, [dispatch]);
 
     return (
-        <Box p='4'>
+        <VStack
+            divider={<StackDivider borderColor='red.600' />}
+            justifyContent='center'
+            p={[2, 4, 6, 8]}
+        >
             {!token && <Navigate replace to='/auth/login' />}
-            <Heading mb='2' textAlign='center' fontSize='2xl' color='red.600'>Tus peliculas favoritas</Heading>
-            <Text fontSize='sm' textAlign='center'>Aqui tienes un listado de todas tus peliculas favoritas.</Text>
-            <HStack
-                justifyContent='center'
-                spacing={4}
-            >
-                <SimpleGrid mt='4' columns={{base: 1, md: 2, lg: 3, xl: 4}} spacing={4}>
-                    {favorites.length > 0 ?
-                        favorites.map((fav) => (
-                            <MovieCard key={fav.id} imagen={`https://image.tmdb.org/t/p/original${fav.backdrop_path}`} titulo={fav.title} detailsButton={false} />
-                        ))
-                        : <Text>No tienes peliculas favoritas</Text>}
-                </SimpleGrid>
-            </HStack>
-        </Box>
+            <Box>
+                <Title text='Tus películas favoritas'>
+                    Estas son todas las películas favoritas asociadas a tu cuenta
+                </Title>
+            </Box>
+            <SimpleGrid mt='4' columns={{ base: 1, sm: 2, md: 3, lg: 5, xl: 6 }} spacing={2}>
+                {favorites.length > 0 ?
+                    favorites.map((items, index) => (
+                        <MovieCard key={index} movie={items} />
+                    ))
+                    : <Text>No tienes peliculas favoritas</Text>}
+            </SimpleGrid>
+        </VStack>
     )
 }
 export default Favorites;
